@@ -6,17 +6,39 @@ var LinkedList = function(){
   list.storage = {};
 
   list.addToTail = function(value){
+    // what should this method do?
+      // make the previous tail point to the new tail
+      // set the tail to the new tail
     var newNode = new Node(value);
-    if(list.head === null){
-      list.head = newNode;
+    newNode['idx'] = this.idx;
+    if(this.head === null){
+      this.head = newNode;
+    } else {
+      this.tail.next = newNode;
     }
-    list.tail = newNode
+    this.tail = newNode;
+    this.storage[this.idx] = newNode;
+    this.idx++; 
   };
 
   list.removeHead = function(){
+    // the next node should be become the new head
+    // should remove the current head
+    var previous = this.head;
+    delete this.storage[this.head['idx']];
+    this.head = this.head.next;
+    return previous.value;
+    //delete this.storage[]
   };
 
   list.contains = function(target){
+    for (var key in this.storage) {
+      //if idx: {value:value, next: next}
+      if (this.storage[key]['value']===target) {
+        return true;
+      }     
+    }
+    return false;
   };
 
   return list;
@@ -31,6 +53,5 @@ var Node = function(value){
   return node;
 };
 
-/*
- * Complexity: What is the time complexity of the above functions?
- */
+
+// Complexity: What is the time complexity of the above functions?
