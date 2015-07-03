@@ -10,6 +10,7 @@ var LinkedList = function(){
       // make the previous tail point to the new tail
       // set the tail to the new tail
     var newNode = new Node(value);
+    newNode.idx
     newNode['idx'] = this.idx;
     if(this.head === null){
       this.head = newNode;
@@ -32,6 +33,8 @@ var LinkedList = function(){
   };
 
   list.contains = function(target){
+    //function(){find value of node}
+    //magicFUN(this.head)
     for (var key in this.storage) {
       //if idx: {value:value, next: next}
       if (this.storage[key]['value']===target) {
