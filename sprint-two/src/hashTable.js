@@ -27,7 +27,6 @@ HashTable.prototype.insert = function(k, v){
     found.value = tuple; // update
   } else {
     house.addToTail(tuple); // add
-    console.log(house);
   }
 
 };
@@ -47,6 +46,8 @@ HashTable.prototype.retrieve = function(k){
 HashTable.prototype.remove = function(k) {
   var i = this.hash(k);
   var house = this._storage.get(i);
+  var removed = house.fetch(k);
+  house.removeNode(removed);
 };
 
 
