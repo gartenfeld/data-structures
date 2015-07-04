@@ -6,12 +6,8 @@ var LinkedList = function(){
   list.storage = {};
 
   list.addToTail = function(value){
-    // what should this method do?
-      // make the previous tail point to the new tail
-      // set the tail to the new tail
     var newNode = new Node(value);
-    newNode.idx
-    newNode['idx'] = this.idx;
+    newNode.idx = this.idx;
     if(this.head === null){
       this.head = newNode;
     } else {
@@ -26,7 +22,7 @@ var LinkedList = function(){
     // the next node should be become the new head
     // should remove the current head
     var previous = this.head;
-    delete this.storage[this.head['idx']];
+    delete this.storage[this.head.idx];
     this.head = this.head.next;
     return previous.value;
     //delete this.storage[]
@@ -37,7 +33,7 @@ var LinkedList = function(){
     //magicFUN(this.head)
     for (var key in this.storage) {
       //if idx: {value:value, next: next}
-      if (this.storage[key]['value']===target) {
+      if (this.storage[key].value===target) {
         return true;
       }     
     }
@@ -49,10 +45,9 @@ var LinkedList = function(){
 
 var Node = function(value){
   var node = {};
-
   node.value = value;
   node.next = null;
-
+  node.idx = null;
   return node;
 };
 
