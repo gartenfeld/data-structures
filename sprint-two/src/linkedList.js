@@ -2,42 +2,47 @@ var LinkedList = function(){
   var list = {};
   list.head = null;
   list.tail = null;
-  list.idx = 0;
-  list.storage = {};
 
   list.addToTail = function(value){
-    var newNode = new Node(value);
-    newNode.idx = this.idx;
+    var tail = new Node(value);
     if(this.head === null){
-      this.head = newNode;
+      this.head = tail;
     } else {
-      this.tail.next = newNode;
+      this.tail.next = tail;
     }
-    this.tail = newNode;
-    this.storage[this.idx] = newNode;
-    this.idx++; 
+    this.tail = tail;
   };
 
   list.removeHead = function(){
-    // the next node should be become the new head
-    // should remove the current head
-    var previous = this.head;
-    delete this.storage[this.head.idx];
+    var removed = this.head;
     this.head = this.head.next;
-    return previous.value;
-    //delete this.storage[]
+    return removed.value;
+  };
+
+  list.removeNode = function(node){
+    this.destroy(this.head, node);
+  };
+
+  list.destroy = function(start, target) {
+    if (start === target) {
+      start = start.next;
+    } else if (start.next) {
+      this.destroy(start.next);
+    }
+  };
+
+  list.search = function(node, target){
+    if (node.value === target) {
+      return true;
+    } else if (node.next) {
+      return this.search(node.next, target);
+    } else {
+      return false;
+    }
   };
 
   list.contains = function(target){
-    //function(){find value of node}
-    //magicFUN(this.head)
-    for (var key in this.storage) {
-      //if idx: {value:value, next: next}
-      if (this.storage[key].value===target) {
-        return true;
-      }     
-    }
-    return false;
+    return this.search(this.head, target);
   };
 
   return list;
@@ -47,7 +52,6 @@ var Node = function(value){
   var node = {};
   node.value = value;
   node.next = null;
-  node.idx = null;
   return node;
 };
 
