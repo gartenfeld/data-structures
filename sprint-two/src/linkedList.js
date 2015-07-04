@@ -5,10 +5,14 @@ var LinkedList = function(){
 
   list.addToTail = function(value){
     var tail = new Node(value);
-    if(this.head === null){
-      this.head = tail;
-    } else {
+    if(this.head){
+      if (this.head === this.tail) {
+        this.head.next = this.tail;
+      }
       this.tail.next = tail;
+    } else {
+      this.head = tail;
+
     }
     this.tail = tail;
   };
@@ -38,6 +42,21 @@ var LinkedList = function(){
       return this.search(node.next, target);
     } else {
       return false;
+    }
+  };
+
+  list.fetch = function(key){
+    if (this.head) {
+      return this.find(this.head, key);      
+    }
+    return null;
+  };
+
+  list.find = function(start, key){
+    if (start.value[0] === key) {
+      return start;
+    } else if (start.next) {
+      return this.find(start.next, key);
     }
   };
 

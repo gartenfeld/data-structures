@@ -6,7 +6,7 @@ var Graph = function(){
 };
 
 Graph.prototype.addNode = function(node){
-	var newNode = new Node(node);
+	var newNode = new Vertex(node);
 	this.nodes.push(newNode);
 };
 
@@ -65,7 +65,7 @@ Graph.prototype.forEachNode = function(cb){
 	});
 };
 
-var Node = function(value){
+var Vertex = function(value){
 	this.neighbors = [];
 	this.value = value;
 };
