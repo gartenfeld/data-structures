@@ -12,10 +12,7 @@ var Queue = function(){
   someInstance.enqueue = function(value){
     storage[index] = value;
     length++;
-    index++
- /*   if(pointer > 0){
-      pointer--;
-    }*/
+    index++;
   };
 
   someInstance.dequeue = function(){
