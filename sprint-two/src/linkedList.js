@@ -30,6 +30,8 @@ var LinkedList = function(){
   list.destroy = function(start, target) {
     if (start === target) {
       start.value[1] = null;
+      // why this no work -- when start.next = null
+      // start = start.next
     } else if (start.next) {
       this.destroy(start.next);
     }
