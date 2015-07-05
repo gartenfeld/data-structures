@@ -47,6 +47,7 @@ HashTable.prototype.remove = function(k) {
   var i = this.hash(k);
   var house = this._storage.get(i);
   var removed = house.fetch(k);
+  console.log(removed);
   house.removeNode(removed);
 };
 

@@ -43,7 +43,6 @@ binaryMethods.insert = function (value) {
 binaryMethods.contains = function (value) {
   var found = false;
   var check = function (node) {
-    console.log(node.value === value);
     if (node.value === value) {
       found = true;
     } else if (value < node.value) {
@@ -61,18 +60,24 @@ binaryMethods.contains = function (value) {
   return found;
 };
 
-binaryMethods.depthFirstLog = function (value) {
+binaryMethods.depthFirstLog = function (cb) {
+
+  var process = function (node) {
+  
+    cb(node.value);
+
+    if (node.left) {
+      process(node.left);
+    } else if (node.right) {
+      process(node.right);
+    } 
+
+  };
+
+  process(this);
 
 };
 
 /*
  * Complexity: What is the time complexity of the above functions?
  */
-
-/*var BinaryNode = function(value){
-    var node = {};
-    node.value = value;
-    node.left = null;
-    node.right = null;
-    return node;
-};*/

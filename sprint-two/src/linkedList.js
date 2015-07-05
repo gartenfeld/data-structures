@@ -29,7 +29,7 @@ var LinkedList = function(){
 
   list.destroy = function(start, target) {
     if (start === target) {
-      start = start.next;
+      start.value[1] = null;
     } else if (start.next) {
       this.destroy(start.next);
     }
