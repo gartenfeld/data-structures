@@ -24,16 +24,21 @@ var LinkedList = function(){
   };
 
   list.removeNode = function(node){
-    this.destroy(this.head, node);
+    this.destroy(this.head, node, this.head);
   };
 
-  list.destroy = function(start, target) {
+  list.destroy = function(start, target, last) {
     if (start === target) {
-      start.value[1] = null;
-      // why this no work -- when start.next = null
-      // start = start.next
+      // if the head is to be removed
+      if (start === last) {
+        // clear its value
+        start.value = null;
+      } else {
+        // otherwise close the chain
+        last.next = start.next;
+      }
     } else if (start.next) {
-      this.destroy(start.next);
+      this.destroy(start.next, target, start);
     }
   };
 
@@ -55,7 +60,7 @@ var LinkedList = function(){
   };
 
   list.find = function(start, key){
-    if (start.value[0] === key) {
+    if (start.value !== null && start.value[0] === key) {
       return start;
     } else if (start.next) {
       return this.find(start.next, key);
